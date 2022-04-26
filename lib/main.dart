@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:internationalization/l10n/l10n.dart';
 import 'package:localization/localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,18 +19,14 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales){
         return const Locale('pt', 'BR');
       },
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('es', 'ES'),
-        Locale('pt', 'BR'),
-      ],
-      localizationsDelegates: [
-        // delegate from flutter_localization
+      supportedLocales: L10n.all,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        // delegate from localization package.
-        LocalJsonLocalization.delegate,
+        // If you want to use .json files
+        // LocalJsonLocalization.delegate, 
       ],
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
