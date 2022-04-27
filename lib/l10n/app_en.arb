@@ -3,5 +3,13 @@
     "@language": {
         "title": "Current system language"
     },
-    "title": "English App"
+    "title": "English App",
+    "welcome_message": "Hello {username}",
+    "@welcome_message": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    }
 }
