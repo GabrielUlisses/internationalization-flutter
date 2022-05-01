@@ -3,5 +3,16 @@
     "@language": {
         "title": "Current system language"
     },
-    "title": "Aplicativo em Português"
+    "title": "App em Português",
+    "welcome_message": "Olá {username}",
+    "@welcome_message": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "english": "Inglês",
+    "spanish": "Espanhol",
+    "portuguese": "Português"
 }

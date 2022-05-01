@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:internationalization/app/global/constants/assets.dart';
+import 'package:internationalization/l10n/localization/location_model.dart';
 
-class L10n{
-  static const List<Locale> all = <Locale>[
-    Locale('en', 'US'),
-    Locale('es', 'ES'),
-    Locale('pt', 'BR'),
-    Locale('fr', 'FR')
+class L10n {
+  static const List<LocationModel> all = <LocationModel>[
+    LocationModel('pt', 'BR', AssetIcons.icBrazil, "Brasil"),
+    LocationModel('en', 'US', AssetIcons.icUnitedStates, "English"),
+    LocationModel('es', 'ES', AssetIcons.icSpain, "Spañol"),
   ];
 }

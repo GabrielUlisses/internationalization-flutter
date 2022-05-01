@@ -1,7 +1,18 @@
 {
-    "language": "Spañol",
+    "language": "Español",
     "@language": {
         "title": "Current system language"
     },
-    "title": "Hola"
+    "title": "App en Español",
+    "welcome_message": "Olá {username}",
+    "@welcome_message": {
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "english": "Inglés",
+    "spanish": "Español",
+    "portuguese": "Portugués"
 }

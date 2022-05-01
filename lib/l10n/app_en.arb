@@ -11,5 +11,8 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "english": "English",
+    "spanish": "Spanish",
+    "portuguese": "Portuguese"
 }
