@@ -1,6 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:internationalization/app/global/IoC/dependencies.dart';
 import 'package:internationalization/app/global/constants/assets.dart';
 import 'package:internationalization/l10n/l10n.dart';
+import 'package:internationalization/l10n/localization/location_model.dart';
+import 'package:internationalization/l10n/localization/selected_locale.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +17,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final SelectedLocale locale = container.resolve<SelectedLocale>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              AppLocalizations.of(context)!.language,
+            ValueListenableBuilder(
+              valueListenable: locale,
+              builder: (context, locale, widget){
+                return Text((locale as LocationModel).name);
+              }
             ),
-            Text(
-              AppLocalizations.of(context)!.welcome_message("Gabriel Andrade"),
+            Text(AppLocalizations.of(context)!.language),
+            
+            ValueListenableBuilder(
+              valueListenable: locale,
+              builder: (context, locale, widget){
+                return Image.asset((locale as LocationModel).assetFlag);
+              }
             ),
-            Image.asset(AssetImages.flagBrazil)
           ],
         ),
       ),
@@ -41,14 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget menu() {
     return PopupMenuButton(
-        icon: const Icon(Icons.language),
-        itemBuilder: (BuildContext context) => L10n.all
-            .map((location) => PopupMenuItem(
-                  child: ListTile(
-                    leading: Image.asset(location.asset, height: 20, width: 20),
-                    title: Text(location.name),
-                  ),
-                ))
-            .toList());
+      icon: const Icon(Icons.language),
+      itemBuilder: (BuildContext context) => L10n.all.map((location) => PopupMenuItem(
+        child: ListTile(
+          leading: Image.asset(location.asset, height: 20, width: 20),
+          title: Text(location.name),
+        ),
+        onTap: () => locale.setLocale(location),
+      )).toList()
+    );
   }
 }

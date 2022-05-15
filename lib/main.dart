@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales) {
         final defaultLocale = L10n.all.where((e) => e.localeCode == Intl.systemLocale);
         if (defaultLocale.isNotEmpty) {
-          container.registerInstance<SelectedLocale>(SelectedLocale(defaultLocale.first.locale));
+          container.registerInstance<SelectedLocale>(SelectedLocale(defaultLocale.first));
         }else{  
-          container.registerInstance<SelectedLocale>(SelectedLocale(L10n.location.locale));
+          container.registerInstance<SelectedLocale>(SelectedLocale(L10n.location));
         }
         return container.resolve<SelectedLocale>().value.locale;
       },
